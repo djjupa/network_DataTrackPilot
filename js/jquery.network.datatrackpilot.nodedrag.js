@@ -51,8 +51,8 @@ $(document).ready(function() {
 	//d3.csv("../data/trustnetwork_xs.csv", function(testpersons) {
 	//d3.csv("../data/trustnetwork_small.csv", function(testpersons) {
 	//d3.csv("../data/20130620trustnetwork.csv", function(testpersons) {
-	d3.csv("../data/20130701trustnetwork.csv", function(testpersons) {
-	//d3.csv("../data/graph.csv", function(testpersons) {
+	d3.csv("../data/2013-11-26 NetworkMatrix.csv", function(testpersons) {
+	
 				
 		var nodesByID = {};
 		
@@ -61,14 +61,14 @@ $(document).ready(function() {
 		testpersons.forEach(function(testperson){
 			testperson["name"] = testperson.TP_ID;
 			testpersonNodes.push(testperson);
-			//console.log(testperson);
+			console.log(testperson);
 			
 		});
 		
 		// create a node for each row representing test persons
 		testpersonNodes.forEach(createNode);
 		
-		
+		/*
 		//var links = testpersons;
 		var links = findrelationships3(testpersons);
 		
@@ -181,10 +181,9 @@ $(document).ready(function() {
 		function createNode(a_node) {
     		return nodesByID[a_node.TP_ID] || (nodesByID[a_node.TP_ID] = {
     															tp_id: a_node.TP_ID, 
-    															country: a_node.Country, 
-    															city: a_node.City,
-    															trust_level: +a_node.TrustLevel,
-    															privacy_concern: +a_node.PrivacyConcernScore
+    															earpScale: +a_node.Average_EarpScale,
+    															privacyConcern: +a_node.Average_Concern,
+    															privacyBehaviour: +a_node.Average_PrivacyBehaviour
     														});
   		}
   		
@@ -294,89 +293,7 @@ $(document).ready(function() {
 	}
 	
 	
-	/**
-	 * 
-	 */
-	function findrelationships2(testpersons) {
-		
-		
-		
-		var counter = 0;
-		
-		
-		for(var tp=0; tp < testpersons.length; tp++)
-		{
-			var testperson = testpersons[tp];
-			//console.log(testperson);
-			
-			for(var tpc=tp+1; tpc < testpersons.length; tpc++){
-				
-				var testperson_compare = testpersons[tpc];
-				//console.log(testperson_compare);
-				
-				var latitudeDifference = 0;  
-				var longitudeDifference = 0;
-				
-				var testpersonCoordinates = new google.maps.LatLng(testperson.Latitude, testperson.Longitude);
-				var testperson_compareCoordinates = new google.maps.LatLng(testperson_compare.Latitude, testperson_compare.Longitude);
-				
-				var distanceBetweenTwoPoints = google.maps.geometry.spherical.computeDistanceBetween (testpersonCoordinates, testperson_compareCoordinates);
-				
-				console.log("DISTANCE: ");
-				console.log(testperson.Latitude);
-				
-				console.log(distanceBetweenTwoPoints);
-				
-				if(isSameLatitude(testperson.Latitude, testperson_compare.Latitude))
-				{
-					latitudeDifference = Math.abs(Math.abs(+testperson.Latitude) - Math.abs(+testperson_compare.Latitude));
-					/*
-					console.log(testperson.Country);
-					console.log(testperson.Latitude);
-					console.log(testperson_compare.Country);
-					console.log(testperson_compare.Latitude);
-					console.log(latitudeDifference);
-					console.log("-----------")
-					*/
-				}
-				else
-				{
-					latitudeDifference = Math.abs(+testperson.Latitude) + Math.abs(+testperson_compare.Latitude);
-				}
-				
-				if(isSameLongitude(testperson.Longitude, testperson_compare.Longitude))
-				{
-					longitudeDifference = Math.abs(Math.abs(+testperson.Longitude) - Math.abs(+testperson_compare.Longitude));
-				}
-				else
-				{
-					longitudeDifference = Math.abs(+testperson.Longitude) + Math.abs(+testperson_compare.Longitude);
-				}
-				
-				
-				if(	 longitudeDifference < longitude_proximity_threshold 
-						 && latitudeDifference < latitude_proximity_threshold
-						 )
-					{	
-						
-						if(testperson.TP_ID == "NULL000")
-						{
-							console.log(testperson.TP_ID);
-							console.log(testperson.Longitude);
-							console.log(testperson.Latitude);
-							console.log(testperson_compare.TP_ID);
-							console.log(testperson_compare.Longitude);
-							console.log(testperson_compare.Latitude);
-							console.log(longitudeDifference);
-							console.log(latitudeDifference);
-						}
-						addLinkBetweenNodes(testperson, testperson_compare);
-					}		
-			}
-		}
-		return foundlinks;
-		
-	}
+	
 	
 	
 	function addLinkBetweenNodes(testperson, testperson_compare) {
