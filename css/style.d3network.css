@@ -1,0 +1,142 @@
+/*
+ * 
+ */
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+
+.node {
+  stroke: #009900;
+  stroke-width: 1.5px;
+  /* color: #009900; */
+  
+}
+
+
+.node circle {
+  stroke-width: 1.5px;
+  stroke: #fff;
+  /* opacity: .5; */
+}
+
+
+.node text {
+  pointer-events: none;
+  font: 15px;
+  font-family: 'Didact Gothic', sans-serif;
+  color: #0033CC;
+  stroke-width: 0px;
+}
+
+
+.node:not(:hover) .nodetext {
+  display: none;
+}
+
+.root-node {
+  fill: #fff;
+  stroke: green;
+  stroke-width: 3.5px;
+}
+
+
+.link {
+  stroke: #999;
+  stroke-width: 0.5px;
+  /* stroke-opacity: 2.6; */
+}
+
+#svgdiv {
+	height: 100%;
+}
+
+path.link {
+  fill: none;
+  stroke-width: 2px;
+}
+
+
+marker#end {
+	fill: #999;
+	
+}
+
+line {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.pii {
+  stroke: #009900;
+  stroke-width: 1.5px;
+  /* color: #009900; */
+  
+}
+
+.piinode {
+  stroke: #999999;
+  stroke-width: 1.5px;
+  /* color: #009900; */
+  
+}
+
+
+.piinode circle {
+  stroke: red;
+  stroke-width: 1.5px;
+  /* color: #009900; */
+  
+}
+
+.piinodetext {
+  pointer-events: none;
+  font: 15px;
+  font-family: 'Didact Gothic', sans-serif;
+  color: #0033CC;
+  stroke-width: 0px;
+}
+
+
+piipath {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+
+.piilink {
+  stroke: #999;
+  /* stroke-opacity: 2.6; */
+}
+
+
+
+line.link {
+  stroke-width: 2px;
+}
+
+
+path {
+  stroke: white;
+  stroke-width: 0.25px;
+  fill: grey;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.land {
+  fill: #999999;
+  opacity: .5;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
