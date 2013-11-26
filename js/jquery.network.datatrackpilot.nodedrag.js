@@ -68,6 +68,9 @@ $(document).ready(function() {
 		// create a node for each row representing test persons
 		testpersonNodes.forEach(createNode);
 		
+		console.log("TestPersonNodes:");
+		console.log(testpersonNodes);
+		
 		/*
 		//var links = testpersons;
 		var links = findrelationships3(testpersons);
